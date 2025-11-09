@@ -208,9 +208,6 @@ def validar_raza(raza):
 
 
 def validar_fecha_turno(fecha):
-    distancia_minima_entre_turnos = 60 * 60     # 60 * 60 segundos = 1 hora
-    distancia_minima_string = "1 hora"          # mensaje que se muestra en el error
-
     errores = validar_fecha(fecha, formato=FORMATO_FECHA_HORA)
 
     if len(errores) != 0:
@@ -221,15 +218,30 @@ def validar_fecha_turno(fecha):
     if datetime.now() > fecha_parseada:
         errores.append("La fecha del turno debe estar en el futuro.")
 
-    turnos = datos.obtener_turnos()
+    return errores
 
-    for turno in turnos:
-        fecha_turno_parseada = datetime.strptime(turno['fecha'], FORMATO_FECHA_HORA)
-        distancia_horaria = (fecha_turno_parseada - fecha_parseada).total_seconds()
+def validar_colisiones_turnos(turno_a_comprobar):
+    distancia_minima_entre_turnos = 60 * 60  # 60 * 60 segundos = 1 hora
+    distancia_minima_string = "1 hora"  # mensaje que se muestra en el error
 
-        if abs(distancia_horaria) < distancia_minima_entre_turnos:
-            errores.append(f"Debe haber al menos {distancia_minima_string} entre turnos, se encontró una colisión con el turno {turno['id']}")
+    errores = validar_fecha(turno_a_comprobar['fecha'], FORMATO_FECHA_HORA)
 
+    # No debería pasar, pero por las dudas es preferible devolver el error de fecha inválida y no una excepción
+    if len(errores) != 0:
+        return errores
+
+    fecha_turno_a_comprobar = datetime.strptime(turno_a_comprobar['fecha'], FORMATO_FECHA_HORA)
+
+    for turno in datos.obtener_turnos():
+        # Solo nos interesa la colisión si los turnos comparten mascota o veterinario
+        if (turno['id_mascota'] == turno_a_comprobar['id_mascota'] or
+            turno['id_veterinario'] == turno_a_comprobar['id_veterinario']):
+            fecha_turno_parseada = datetime.strptime(turno['fecha'], FORMATO_FECHA_HORA)
+            distancia_horaria = (fecha_turno_parseada - fecha_turno_a_comprobar).total_seconds()
+
+            if abs(distancia_horaria) < distancia_minima_entre_turnos:
+                errores.append(
+                    f"Debe haber al menos {distancia_minima_string} entre turnos, se encontró una colisión con el turno {turno['id']}, con fecha {turno['fecha']}")
     return errores
 
 

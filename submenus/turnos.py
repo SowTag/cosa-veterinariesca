@@ -77,6 +77,15 @@ def crear_nuevo_turno(mascota=None):
     turno['id_mascota'] = mascota['id']
     turno['id_veterinario'] = veterinario['id']
 
+    colisiones = validaciones.validar_colisiones_turnos(turno)
+
+    if len(colisiones) != 0:
+        print("ERROR: Se encontraron colisiones con el turno")
+
+        for colision in colisiones:
+            print(f"* {colision}")
+        return
+
     turnos = datos.obtener_turnos()
 
     turnos.append(turno)
