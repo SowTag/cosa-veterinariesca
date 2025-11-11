@@ -6,8 +6,8 @@ from datos import rellenar_dict
 # Supongamos que un cliente puede tener nombre, apellido y DNI, pero por algún motivo solo tenemos los primeros dos:
 
 cliente = {
-    "nombre": "Rosa",
-    "apellido": "Melano",
+    "nombre": "John",
+    "apellido": "Doe",
 }
 
 print(cliente)
@@ -26,9 +26,9 @@ cliente2 = rellenar_dict(cliente, ['nombre', 'apellido', 'dni'])
 print(cliente2)
 
 # Compará el primer print con el segundo, pasamos de:
-# {'nombre': 'Rosa', 'apellido': 'Melano'}
+# {'nombre': 'John', 'apellido': 'Doe'}
 # a:
-# {'nombre': 'Rosa', 'apellido': 'Melano', 'dni': None}
+# {'nombre': 'John', 'apellido': 'Doe', 'dni': None}
 
 # Entonces, ahora intentar acceder al DNI no va a tirar una excepción, sino simplemente devolver None:
 print(f"DNI: {cliente2['dni']}")
