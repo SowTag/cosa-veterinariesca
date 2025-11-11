@@ -1,5 +1,6 @@
 import uuid
 
+
 # Imprime un título de ancho fijo alineado en consola.
 def imprimir_titulo(titulo):
     ancho_maximo = 80
@@ -93,7 +94,8 @@ def generar_id_unico():
     # uuid.uuid4() genera un ID de 128 bits, osea uno en 2^128 = 340282366920938463463374607431768211456
     # esto hace que sea poco factible tener colisiones (generar dos ID iguales) y es lo que se usa comúnmente en entornos
     # de producción.
-    return str(uuid.uuid4()) # uuid = Universally Unique ID (identificador universalmente único)
+    return str(uuid.uuid4())  # uuid = Universally Unique ID (identificador universalmente único)
+
 
 # Crea un formulario que pide varios campos y retorna el diccionario con los mismos rellenos, permite cancelación en cuyo
 # caso se retorna None.
@@ -110,8 +112,8 @@ def crear_formulario(formulario, agregar_id=True):
 
         respuesta = input_validado(prompt, validador, cancelable=True)
 
-        if respuesta is None:       # se canceló el input
-            return None             # cancelar el form entero, esto se maneja en la función externa
+        if respuesta is None:  # se canceló el input
+            return None  # cancelar el form entero, esto se maneja en la función externa
 
         diccionario[clave] = respuesta
 
@@ -126,8 +128,8 @@ def crear_formulario(formulario, agregar_id=True):
 # por_defecto: la opción por defecto, si el usuario presiona Enter
 # * Véase ejemplos/solicitar_confirmacion.py
 def solicitar_confirmacion(mensaje, por_defecto=False):
-    respuesta_positiva = "s" # sí
-    respuesta_negativa = "n" # no
+    respuesta_positiva = "s"  # sí
+    respuesta_negativa = "n"  # no
 
     letra_positiva = respuesta_positiva.upper() if por_defecto else respuesta_positiva.lower()
     letra_negativa = respuesta_negativa.upper() if not por_defecto else respuesta_negativa.lower()

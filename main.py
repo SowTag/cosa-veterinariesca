@@ -1,7 +1,6 @@
 import utils
 from submenus import clientes, mascotas, veterinarios, turnos
 
-
 opciones = [
     ("1", "Clientes", clientes.abrir_menu),
     ("2", "Mascotas", mascotas.abrir_menu),

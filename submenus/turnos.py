@@ -1,8 +1,8 @@
+from datetime import datetime
+
 import datos
 import impresiones
 import utils
-from datetime import datetime
-
 import validaciones
 
 
@@ -21,9 +21,11 @@ def buscar_turno_por_id():
 
     impresiones.imprimir_turno_detallado(turno)
 
+
 # sorted() necesita una propiedad del turno para comparar, en este caso va a ser la fecha
 def ordenar_turnos(turno_a_ordenar):
     return datetime.strptime(turno_a_ordenar['fecha'], validaciones.FORMATO_FECHA_HORA)
+
 
 def mostrar_todos_los_turnos():
     # Ordenar los turnos por fecha (de anterior a posterior)
@@ -51,7 +53,6 @@ def crear_nuevo_turno(mascota=None):
 
         mascota = datos.buscar_mascota_por_id(id_mascota)
 
-
     dni_o_id_veterinario = utils.input_validado("DNI o ID del veterinario",
                                                 validaciones.validar_dni_o_id_veterinario_existe,
                                                 cancelable=True)
@@ -66,9 +67,9 @@ def crear_nuevo_turno(mascota=None):
         ("motivo_visita", "Motivo de la visita", validaciones.validar_motivo_visita),
     ]
 
-    utils.imprimir_titulo(f"Creación de turno: {mascota['nombre']} con {veterinario['nombre']} {veterinario['apellido']} (DNI {veterinario['dni']})")
+    utils.imprimir_titulo(
+        f"Creación de turno: {mascota['nombre']} con {veterinario['nombre']} {veterinario['apellido']} (DNI {veterinario['dni']})")
     turno = utils.crear_formulario(formulario)
-
 
     if turno is None:
         print("* Creación de turno cancelada")
@@ -111,7 +112,6 @@ def cancelar_turno():
     datos.guardar_turnos(turnos)
 
     print("* Turno eliminado")
-
 
 
 def abrir_menu():

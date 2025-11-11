@@ -85,7 +85,7 @@ def crear_nuevo_cliente():
     print("* Nuevo cliente creado")
 
 
-def eliminar_cliente(cliente_a_eliminar = None):
+def eliminar_cliente(cliente_a_eliminar=None):
     utils.imprimir_titulo("Eliminar un cliente")
 
     if cliente_a_eliminar is None:

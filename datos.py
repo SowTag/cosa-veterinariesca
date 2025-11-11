@@ -38,7 +38,8 @@ def asegurar_archivo_json_existe():
 
 def guardar_json(datos):
     with open(RUTA_JSON, "w", encoding="utf-8") as f:  # w = write (escritura)
-        json.dump(datos, f, indent=4, ensure_ascii=False)  # indent=4 hace que el JSON tenga un formato que lo hace más legible
+        json.dump(datos, f, indent=4,
+                  ensure_ascii=False)  # indent=4 hace que el JSON tenga un formato que lo hace más legible
 
     # encoding="utf-8" y ensure_ascii=False hacen que se puedan guardar acentos y Ñ al JSON
 

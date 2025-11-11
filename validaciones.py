@@ -1,10 +1,10 @@
 from datetime import datetime
-from pickletools import long1
 
 import datos
 
 FORMATO_FECHA = "%d/%m/%Y"
 FORMATO_FECHA_HORA = f"{FORMATO_FECHA} %H:%M"
+
 
 def validar_nombre(nombre):
     longitud_minima = 3
@@ -79,6 +79,7 @@ def validar_fecha_nacimiento(fecha):
 
     return errores
 
+
 def validar_fecha_nacimiento_mascota(fecha):
     errores = validar_fecha(fecha)
 
@@ -91,6 +92,7 @@ def validar_fecha_nacimiento_mascota(fecha):
         errores.append("La fecha de nacimiento no puede estar en el futuro")
 
     return errores
+
 
 # Validaciones básicas para un DNI
 def validar_dni(dni):
@@ -220,6 +222,7 @@ def validar_fecha_turno(fecha):
 
     return errores
 
+
 def validar_colisiones_turnos(turno_a_comprobar):
     distancia_minima_entre_turnos = 60 * 60  # 60 * 60 segundos = 1 hora
     distancia_minima_string = "1 hora"  # mensaje que se muestra en el error
@@ -235,7 +238,7 @@ def validar_colisiones_turnos(turno_a_comprobar):
     for turno in datos.obtener_turnos():
         # Solo nos interesa la colisión si los turnos comparten mascota o veterinario
         if (turno['id_mascota'] == turno_a_comprobar['id_mascota'] or
-            turno['id_veterinario'] == turno_a_comprobar['id_veterinario']):
+                turno['id_veterinario'] == turno_a_comprobar['id_veterinario']):
             fecha_turno_parseada = datetime.strptime(turno['fecha'], FORMATO_FECHA_HORA)
             distancia_horaria = (fecha_turno_parseada - fecha_turno_a_comprobar).total_seconds()
 
@@ -254,5 +257,3 @@ def validar_motivo_visita(motivo):
         errores.append(f"El motivo de la visita debe tener al menos {longitud_minima} caracteres")
 
     return errores
-
-

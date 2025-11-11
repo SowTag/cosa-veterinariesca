@@ -6,6 +6,7 @@ import utils
 def opcion1():
     print("Esto es lo que está en la opción 1.")
 
+
 def opcion2():
     print("Esto es lo que está en la opción 2. Contemos hasta 3:")
 
@@ -13,8 +14,11 @@ def opcion2():
         print(i + 1)
         time.sleep(1)
 
+
 def opcion3():
-    print("Esta es la opción 3, dentro del submenú (date cuenta que no se vuelve al menú principal sino al mismo submenú).")
+    print(
+        "Esta es la opción 3, dentro del submenú (date cuenta que no se vuelve al menú principal sino al mismo submenú).")
+
 
 def submenu():
     opciones_submenu = [

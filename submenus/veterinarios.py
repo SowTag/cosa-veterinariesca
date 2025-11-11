@@ -12,6 +12,7 @@ def mostrar_todos_los_veterinarios():
     for veterinario in veterinarios:
         impresiones.imprimir_veterinario_simple(veterinario)
 
+
 def buscar_veterinario_por_dni():
     utils.imprimir_titulo("Buscar veterinario por DNI o ID")
 
