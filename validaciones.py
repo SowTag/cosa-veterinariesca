@@ -153,7 +153,7 @@ def validar_especialidad(especialidad):
     errores = []
 
     if len(especialidad) < longitud_minima:
-        errores.append(t"La especialidad debe tener al menos {longitud_minima} caracteres")
+        errores.append(f"La especialidad debe tener al menos {longitud_minima} caracteres")
 
     return errores
 
