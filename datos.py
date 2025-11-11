@@ -128,7 +128,7 @@ def buscar_cliente_por_dni_o_id(dni_o_id):
 
 def buscar_cliente_duenio_de_mascota(mascota):
     for cliente in obtener_clientes():
-        if mascota['owner_id'] == cliente['id']:
+        if mascota['id_dueño'] == cliente['id']:
             return cliente
 
     return None
